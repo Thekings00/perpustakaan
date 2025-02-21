@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Regist</title>
     <!-- link untuk css -->
      <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <!-- bungkus semua isi login -->
+    <!-- bungkus semua isi regist -->
     <div class="container">
 
-        <!-- buat tampilan login -->
-         <form action="{{ route('login.proses') }}" class="form" class="form" method="post">
+        <!-- buat tampilan regist -->
+         <form action="{{ route('regist.tambahUser') }}" class="form" method="post">
             @csrf
-
             <div class="teks-login">
-            <h1>Login</h1>
-            <p>Silahkan login ke akun anda untuk masuk</p>
+            <h1>Registerasi</h1>
+            <p>Buat akun anda Sekarang</p>
             </div>
 
-            @if (session('error'))
+             @if (session('error'))
                 <div class="pesan-error">
                     {{ session('error') }}
                 </div>
@@ -28,6 +27,10 @@
 
             <!-- untuk form input -->
              <div class="form-input">
+            <label for="name" class="teks-input">NAME</label>
+            <br>
+            <input type="text" id="name" name="name" class="input" required>
+            <br>
             <label for="email" class="teks-input">EMAIL</label>
             <br>
             <input type="text" id="email" name="email" class="input" required>
@@ -36,9 +39,9 @@
             <br>
             <input type="password" id="password" name="password" class="input" required>
             <br>
-            <input class="login" type="submit" name="login" value="Login">
+            <input class="login" type="submit" name="regist" value="Buat Akun">
              </div>
-             <p style="text-align: center; margin-top: 10px;">Belum Punya Akun?<a href="{{ route('regist') }}">Buat Akun Sekarang!!</a></p>
+             <p style="text-align: center; margin-top: 10px;">Sudah Punya Akun?<a href="{{ route('login') }}">Login Sekarang!!</a></p>
          </form>
     </div>
 </body>
