@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\bukucontroller;
+use App\Http\Controllers\peminjamcontroller;
 use App\Http\Controllers\usercontroller;
 use Illuminate\Support\Facades\Route;
 
@@ -9,14 +11,10 @@ Route::post('/login', [usercontroller::class, 'loginproses'])->name('login.prose
 
 // register
 Route::get('/regist', [usercontroller::class, 'regist'])->name('regist');
-
 Route::post('/regist', [usercontroller::class, 'registrasi'])->name('regist.tambahUser');
 
+// dashboard buku
+Route::get('/dashboardb', [bukucontroller::class, 'index'])->name('dashboardbuku');
 
-// dashboard dll
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-Route::get('/tambahbuku', function () {
-    return view('tambahbuku');
-});
+// dashboard peminjam
+Route::get('/dashboardp', [peminjamcontroller::class, 'index'])->name('dashboardpeminjam');
