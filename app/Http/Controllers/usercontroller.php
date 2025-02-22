@@ -35,6 +35,7 @@ class usercontroller extends Controller
             return redirect()->route('regist')->with('error', 'Registrasi gagal, silakan coba lagi!!');
         }
     }
+
     public function login()
     {
         return view('login');
@@ -48,14 +49,14 @@ class usercontroller extends Controller
                 'password' => 'required'
             ]);
 
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            if (Auth::attempt( ['email' => $request->email,'password' => $request->password])) {
                 $request->session()->regenerate();
                 return redirect()->route('dashboard')->with('success', 'Login berhasil!');
             }else{
                 return redirect()->route('login')->with('error', 'username atau password salah, silakan coba lagi!!');
             }
         }catch(Exception $e){
-            return redirect()->route('login')->with('error', 'Login gagal, silakan coba lagi!!');
+            return redirect()->route('login')->with('error', 'Login gagal, silakan coba lagi!!' . $e->getMessage());
         }
     }
 }

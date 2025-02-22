@@ -16,7 +16,7 @@ Route::post('/regist', [usercontroller::class, 'registrasi'])->name('regist.tamb
 // dashboard dll
 Route::get('/dashboard', function () {
     return view('dashboard');
-});
+})->name('dashboard');
 Route::get('/tambahbuku', function () {
     return view('tambahbuku');
 });
