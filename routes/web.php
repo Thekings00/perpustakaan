@@ -15,6 +15,10 @@ Route::post('/regist', [usercontroller::class, 'registrasi'])->name('regist.tamb
 
 // dashboard buku
 Route::get('/dashboardb', [bukucontroller::class, 'index'])->name('dashboardbuku');
+Route::get('/tambahb',[bukucontroller::class, 'create'])->name('create-buku');
+Route::post('/tambahb',[bukucontroller::class, 'store'])->name('store-buku');
 
 // dashboard peminjam
 Route::get('/dashboardp', [peminjamcontroller::class, 'index'])->name('dashboardpeminjam');
+Route::get('/tambahp', [peminjamcontroller::class, 'create'])->name('create-peminjam');
+Route::post('/tambahp',[peminjamcontroller::class, 'store'])->name('store-pinjam');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\buku;
+use Exception;
 use Illuminate\Http\Request;
 
 class bukucontroller extends Controller
@@ -21,7 +22,7 @@ class bukucontroller extends Controller
      */
     public function create()
     {
-        //
+        return view('buku/tambahbuku');
     }
 
     /**
@@ -29,7 +30,23 @@ class bukucontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+        $request->validate([
+            'nama_buku' => 'required|string',
+            'pengarang' => 'required|string',
+            'jumlah_buku' => 'required|integer',
+        ]);
+
+        buku::create([
+            'nama_buku' => $request->nama_buku,
+            'pengarang' => $request->pengarang,
+            'jumlah_buku' => $request->jumlah_buku,
+        ]);
+
+        return redirect()->route('dashboardbuku')->with('succes',"Data Berhasil Ditambahkan");
+        }catch(Exception $e){
+            return redirect()->back()->with('error', 'Gagal menyimpan data: '. $e->getMessage());
+        }
     }
 
     /**

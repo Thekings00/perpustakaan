@@ -12,29 +12,23 @@
     <div class="container">
 
         <!-- buat tampilan tambah buku -->
-         <form action="#" class="form" class="form" method="post">
+         <form action="{{ route('store-buku') }}" class="form" class="form" method="post">
             <div class="teks-login">
             <h1>Tambahkan Buku</h1>
             <p>isi data dibawah untuk menambahkan buku</p>
             </div>
 
-            <!-- pesan error jika data gagal disimpan -->
-             <?php if(isset($_SESSION['error'])) {?>
+            @if (session('error'))
                 <div class="pesan-error">
-                    <?php
-                        // munculin pesan error
-                        echo $_SESSION['error'];
-                        // hapus pesan error setelah ditampilkan
-                        unset($_SESSION['error']);
-                   ?>
+                    {{ session('error') }}
                 </div>
-            <?php }?>
+             @endif
 
-            <!-- untuk form input -->
              <div class="form-input">
-            <label for="judul_buku" class="teks-input">Judul Buku</label>
+            @csrf
+            <label for="nama_buku" class="teks-input">Judul Buku</label>
             <br>
-            <input type="text" id="judul_buku" name="judul_buku" class="input" autocomplete="off" required>
+            <input type="text" id="nama_buku" name="nama_buku" class="input" autocomplete="off" required>
             <br>
             <label for="pengarang" class="teks-input">Pengarang Buku</label>
             <br>
@@ -44,33 +38,10 @@
             <br>
             <input type="number" id="jumlah_buku" name="jumlah_buku" class="input" required>
             <br>
+            <br>
             <input class="tambah" type="submit" name="tambah" value="tambah">
              </div>
          </form>
     </div>
 </body>
 </html>
-
-<?php
-// cek apakah inputan dengan name login ditekan
-if(isset($_POST['tambah'])){
-    // ambil inputan dari user
-    $judul_buku = $_POST["judul_buku"];
-    $pengarang = $_POST["pengarang"];
-    $jumlah_buku = $_POST["jumlah_buku"];
-    // query mysql
-    $query_sql = "INSERT INTO buku(judul_buku,pengarang,jumlah_buku)
-                   VALUES ('$judul_buku', '$pengarang', '$jumlah_buku')";
-
-    // menghubungkan koneksi dengan query mysql
-    $result = mysqli_query($con,$query_sql);
-
-    //arahkan ke dashboard jika berhasil menambah buku
-    if ($result) {
-        header("location: dashboard.php");
-    }else {
-        $_SESSION['error'] = "Gagal Menambahkan Data Silahkan Coba Lagi!!";
-        header("location: tambahBuku.php");
-    }
-}
-?>

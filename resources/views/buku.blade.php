@@ -9,7 +9,7 @@
 
     <div class="fitur">
         <!-- btn tambah -->
-        <a href="tambahbuku.php">
+        <a href="{{ route('create-buku') }}">
             <button class="btn-tambah">Tambah</button>
         </a>
         <!-- btn search -->

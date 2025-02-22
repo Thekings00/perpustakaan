@@ -9,7 +9,7 @@
 
     <div class="fitur">
         <!-- btn tambah -->
-        <a href="tambahbuku.php">
+        <a href="{{ route('create-peminjam') }}">
             <button class="btn-tambah">Tambah</button>
         </a>
         <!-- btn search -->
@@ -29,8 +29,9 @@
                     <th>No</th>
                     <th>Nama peminjam</th>
                     <th>Kelas</th>
-                    <th>nomor handphone</th>
-                    <th>jumlah buku di pinjam</th>
+                    <th>Nomor handphone</th>
+                    <th>Nama buku</th>
+                    <th>Jumlah buku di pinjam</th>
                     <th>Tanggal Di Pinjam</th>
                     <th>Tanggal Di kembalikan</th>
                     <th>Kelola</th>
@@ -44,6 +45,7 @@
                         <td>{{ $peminjam->nama_peminjam }}</td>
                         <td>{{ $peminjam->kelas }}</td>
                         <td>{{ $peminjam->nomor_hp }}</td>
+                        <td>{{ $peminjam->buku->nama_buku ?? 'buku tidak ada' }}</td>
                         <td>{{ $peminjam->jumlah_buku }}</td>
                         <td>{{ $peminjam->created_at }}</td>
                         <td>{{ $peminjam->updated_at }}</td>
