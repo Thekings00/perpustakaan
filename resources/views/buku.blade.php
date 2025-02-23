@@ -15,7 +15,7 @@
         <!-- btn search -->
         <div class="div-search">
             <form action="" method="GET">
-                <input type="text" name="search" class="search" placeholder="search" value="">
+                <input type="text" name="search" class="search" placeholder="search" autocomplete="off">
                 <button type="submit">
                     <img src="./search.svg" alt="">
                 </button>
@@ -24,7 +24,7 @@
     </div>
 
     @if (session('succes'))
-        <div class="pesan-succes">
+        <div class="pesan-success">
             {{ session('succes') }}
         </div>
     @endif
@@ -53,8 +53,12 @@
                         <td>{{ $buku->created_at }}</td>
                         <td>{{ $buku->updated_at }}</td>
                         <td>
-                            <a href="{{ route('edit-buku',$buku->id) }}" class="btn-edit">edit</a>
-                            <a href="" onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?');" class="btn-delete">delete</a>
+                            <button class="btn-edit"><a href="{{ route('edit-buku',$buku->id) }}" class="btn-edit">edit</a></button>
+                            <form action="{{ route('delete-buku', $buku->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus buku ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-delete">Delete</button>
+                            </form>
                         </td>
                     </tr>
 

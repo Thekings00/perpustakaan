@@ -15,7 +15,7 @@
         <!-- btn search -->
         <div class="div-search">
             <form action="" method="GET">
-                <input type="text" name="search" class="search" placeholder="search" value="">
+                <input type="text" name="search" class="search" placeholder="search" autocomplete="off">
                 <button type="submit">
                     <img src="./search.svg" alt="">
                 </button>
@@ -57,14 +57,18 @@
                         <td>{{ $peminjam->created_at }}</td>
                         <td>{{ $peminjam->updated_at }}</td>
                         <td>
-                            <a href="{{ route('edit-peminjam',$peminjam->id) }}" class="btn-edit">edit</a>
-                            <a href="" onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?');" class="btn-delete">delete</a>
+                            <button class="btn-edit"><a href="{{ route('edit-peminjam',$peminjam->id) }}" class="btn-edit">edit</a></button>
+                            <form action="{{ route('delete-peminjam', $peminjam->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-delete">Delete</button>
+                            </form>
                         </td>
                     </tr>
 
                     @empty
                         <tr>
-                            <td colspan="8" style="text-align:center;">Tidak ada data peminjam.</td>
+                            <td colspan="8" style="text-align:center;">Tidak ada buku yang di pinjam.</td>
                         </tr>
 
                 @endforelse

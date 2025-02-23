@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\buku;
 use App\Models\peminjam;
+use App\Models\users;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class peminjamcontroller extends Controller
     public function index()
     {
         $data = peminjam::with('buku')->get();
-        return view('pinjam', ["data" => $data]);
+        $user = users::all();
+        return view('pinjam', ["data" => $data, "user" => $user]);
     }
 
     /**
@@ -106,6 +108,8 @@ class peminjamcontroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $peminjam = peminjam::findOrFail($id);
+        $peminjam->delete();
+        return redirect()->route('dashboardpeminjam')->with('succes',"Data Berhasil Dihapus");
     }
 }
