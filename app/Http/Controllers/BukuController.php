@@ -50,19 +50,12 @@ class bukucontroller extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $buku = buku::find($id);
+        return view('buku.editbuku',["buku" => $buku]);
     }
 
     /**
@@ -70,7 +63,23 @@ class bukucontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+        $request->validate([
+            'nama_buku' => 'required|string',
+            'pengarang' => 'required|string',
+            'jumlah_buku' => 'required|integer',
+        ]);
+
+        $buku = buku::findOrFail($id);
+        $buku->nama_buku = $request->nama_buku;
+        $buku->pengarang = $request->pengarang;
+        $buku->jumlah_buku = $request->jumlah_buku;
+        $buku->update();
+
+        return redirect()->route('dashboardbuku')->with('succes',"Data Berhasil Diedit");
+    }catch(Exception $e){
+        return redirect()->back()->with('error', 'Gagal mengedit data');
+    }
     }
 
     /**

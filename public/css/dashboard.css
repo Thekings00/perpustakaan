@@ -168,3 +168,14 @@ button i {
     text-decoration: none !important;
     color: black !important;
 }
+
+
+.pesan-success{
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    background: #04ff008a;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+}

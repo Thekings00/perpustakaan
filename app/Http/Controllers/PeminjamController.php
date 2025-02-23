@@ -68,7 +68,9 @@ class peminjamcontroller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $peminjam = peminjam::findOrFail($id);
+        $dataBuku = buku::all();
+        return view('pinjam.editpinjam',['peminjam' => $peminjam, 'dataBuku' => $dataBuku]);
     }
 
     /**
@@ -76,7 +78,27 @@ class peminjamcontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $request->validate([
+                'nama_peminjam' => 'required|min:6|string',
+                'kelas' => 'required',
+                'nomor_hp' => 'required|min:11|numeric',
+                'id_buku' => 'required',
+                'jumlah_buku' => 'required'
+            ]);
+
+            $peminjam = peminjam::findOrFail($id);
+            $peminjam->nama_peminjam = $request->nama_peminjam;
+            $peminjam->kelas = $request->kelas;
+            $peminjam->nomor_hp = $request->nomor_hp;
+            $peminjam->id_buku = $request->id_buku;
+            $peminjam->jumlah_buku = $request->jumlah_buku;
+            $peminjam->update();
+
+            return redirect()->route('dashboardpeminjam')->with("succes","berhasil mengupdate data peminjam!!");
+        }catch(Exception $e){
+            return redirect()->back()->with("error","gagal mengupdate data peminjam!!". $e->getMessage());
+        }
     }
 
     /**

@@ -22,6 +22,13 @@
             </form>
         </div>
     </div>
+
+    @if (session('succes'))
+        <div class="pesan-succes">
+            {{ session('succes') }}
+        </div>
+    @endif
+
     <div class="table-container">
         <table>
             <thead>
@@ -46,7 +53,7 @@
                         <td>{{ $buku->created_at }}</td>
                         <td>{{ $buku->updated_at }}</td>
                         <td>
-                            <a href="" class="btn-edit">edit</a>
+                            <a href="{{ route('edit-buku',$buku->id) }}" class="btn-edit">edit</a>
                             <a href="" onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?');" class="btn-delete">delete</a>
                         </td>
                     </tr>

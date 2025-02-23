@@ -22,6 +22,13 @@
             </form>
         </div>
     </div>
+
+    @if (session('succes'))
+        <div class="pesan-success">
+            {{ session('succes') }}
+        </div>
+    @endif
+
     <div class="table-container">
         <table>
             <thead>
@@ -50,7 +57,7 @@
                         <td>{{ $peminjam->created_at }}</td>
                         <td>{{ $peminjam->updated_at }}</td>
                         <td>
-                            <a href="" class="btn-edit">edit</a>
+                            <a href="{{ route('edit-peminjam',$peminjam->id) }}" class="btn-edit">edit</a>
                             <a href="" onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?');" class="btn-delete">delete</a>
                         </td>
                     </tr>
