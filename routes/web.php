@@ -30,3 +30,6 @@ Route::get('/editp/{id}',[peminjamcontroller::class, 'edit'])->name('edit-peminj
 Route::post('/editp/{id}', [peminjamcontroller::class, 'update'])->name('update-peminjam');
 Route::delete('/deletep/{id}', [peminjamcontroller::class, 'destroy'])->name('delete-peminjam');
 Route::get('searchp', [peminjamcontroller::class, 'search'])->name('searchp');
+
+// logout
+Route::post('/logout',[usercontroller::class, 'logout'])->name('logout');

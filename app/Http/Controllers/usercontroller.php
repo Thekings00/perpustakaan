@@ -59,4 +59,9 @@ class usercontroller extends Controller
             return redirect()->route('login')->with('error', 'Login gagal, silakan coba lagi!!' . $e->getMessage());
         }
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }

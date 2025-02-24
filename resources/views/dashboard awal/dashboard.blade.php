@@ -18,6 +18,10 @@
                 <li><a href="{{ route('dashboardbuku') }}">Data Buku</a></li>
                 <li><a href="{{ route('dashboardpeminjam') }}">Data Peminjaman</a></li>
             </ul>
+            <form method="post" action="{{ route("logout") }}" onsubmit="return confirm('apakah kamu ingin logout??')">
+                @csrf
+                <button type="submit" onsubmit="return confirm('apakah kamu yakin ingin keluar??')" class="logout-btn">Logout</button>
+            </form>
         </nav>
     </div>
 

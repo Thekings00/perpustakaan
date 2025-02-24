@@ -179,3 +179,17 @@ button i {
     text-align: center;
     margin-top: 10px;
 }
+
+.logout-btn{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    background-color: #ff0033;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+}
