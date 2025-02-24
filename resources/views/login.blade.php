@@ -26,6 +26,12 @@
                 </div>
              @endif
 
+            @if (session('succes'))
+                <div class="pesan-succes">
+                    {{ session('succes') }}
+                </div>
+             @endif
+
             <!-- untuk form input -->
              <div class="form-input">
             <label for="email" class="teks-input">EMAIL</label>

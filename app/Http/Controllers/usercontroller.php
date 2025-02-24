@@ -30,9 +30,9 @@ class usercontroller extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            return redirect()->route('login')->with('success', 'Registrasi berhasil, silakan login!');
+            return redirect()->route('login')->with('succes', 'Registrasi berhasil, silakan login!');
         }catch(Exception $e){
-            return redirect()->route('regist')->with('error', 'Registrasi gagal, silakan coba lagi!!');
+            return redirect()->route('regist')->with('error', 'Email sudah terdaftar harap gunakan email yang belum terdaftar');
         }
     }
 

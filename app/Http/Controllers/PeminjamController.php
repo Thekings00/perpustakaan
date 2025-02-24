@@ -7,6 +7,7 @@ use App\Models\peminjam;
 use App\Models\users;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class peminjamcontroller extends Controller
 {
@@ -17,7 +18,8 @@ class peminjamcontroller extends Controller
     {
         $data = peminjam::with('buku')->get();
         $user = users::all();
-        return view('pinjam', ["data" => $data, "user" => $user]);
+        $usersname = Auth::user();
+        return view('pinjam', ["data" => $data, "user" => $user, "usersname" => $usersname]);
     }
 
     /**

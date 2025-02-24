@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\buku;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class bukucontroller extends Controller
 {
@@ -13,8 +14,9 @@ class bukucontroller extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $data = buku::all();
-        return view('buku',['data' => $data]);
+        return view('buku',['data' => $data, 'user' => $user]);
     }
 
     /**

@@ -71,3 +71,13 @@
     text-align: center;
     margin-top: 10px;
 }
+
+.pesan-succes{
+    color: rgb(0, 255, 38);
+    font-size: 14px;
+    background: #e6ffe7;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+}

@@ -10,7 +10,7 @@
 
     <div class="sidebar">
         <div class="profile">
-            <p>Admin</p>
+            @yield("name")
             <span class="role">Administrator</span>
         </div>
         <nav>
