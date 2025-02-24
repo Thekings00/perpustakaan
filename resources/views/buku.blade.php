@@ -14,8 +14,8 @@
         </a>
         <!-- btn search -->
         <div class="div-search">
-            <form action="" method="GET">
-                <input type="text" name="search" class="search" placeholder="search" autocomplete="off">
+            <form action="searchb" method="GET">
+                <input type="text" name="search" class="search" placeholder="search" value="{{ $search ?? ""}}" autocomplete="off">
                 <button type="submit">
                     <img src="./search.svg" alt="">
                 </button>

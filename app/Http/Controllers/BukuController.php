@@ -91,4 +91,22 @@ class bukucontroller extends Controller
         $buku->delete();
         return redirect()->route('dashboardbuku')->with('succes',"Data Berhasil Dihapus");
     }
+
+    public function search(Request $request){
+        try{
+            $search = $request->input('search');
+
+            if($search){
+                $data = buku::where("nama_buku" ,"like","%{$search}%")
+                ->orWhere("pengarang","LIKE","%{$search}%")
+                ->get();
+            }else{
+                $data = buku::all();
+            }
+
+            return view("buku",["data" => $data,"search" => $search]);
+        }catch(Exception $e){
+            return redirect()->back()->with('error',$e->getMessage());
+        }
+    }
 }

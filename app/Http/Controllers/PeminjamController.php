@@ -57,17 +57,6 @@ class peminjamcontroller extends Controller
     }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $peminjam = peminjam::findOrFail($id);
@@ -111,5 +100,28 @@ class peminjamcontroller extends Controller
         $peminjam = peminjam::findOrFail($id);
         $peminjam->delete();
         return redirect()->route('dashboardpeminjam')->with('succes',"Data Berhasil Dihapus");
+    }
+
+    public function search(Request $request){
+        try{
+                $search = $request->input('search');
+
+                if ($search){
+                    $data = peminjam::where("nama_peminjam","LIKE","%$search%")
+                    ->orWhere("kelas","LIKE","%$search%")
+                    ->orWhere("nomor_hp","LIKE","%$search%")
+                    ->orWhere("id_buku","LIKE","%$search%")
+                    ->orWhereHas("buku",function($query) use ($search){
+                        $query->where("nama_buku","LIKE","%$search%");
+                    })->with("buku")
+                    ->get();
+                }else{
+                    $data = peminjam::all();
+                }
+
+                return view("pinjam",["data" => $data,"search" => $search]);
+        }catch(Exception $e){
+            return redirect()->back()->with('error',$e->getMessage());
+        }
     }
 }

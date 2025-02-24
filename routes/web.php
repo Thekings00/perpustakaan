@@ -20,6 +20,7 @@ Route::post('/tambahb',[bukucontroller::class, 'store'])->name('store-buku');
 Route::get('/editb/{id}',[bukucontroller::class, 'edit'])->name('edit-buku');
 Route::post('/editb/{id}', [bukucontroller::class, 'update'])->name('update-buku');
 Route::delete('/deleteb/{id}', [bukucontroller::class, 'destroy'])->name('delete-buku');
+Route::get('searchb', [bukucontroller::class, 'search'])->name('searchb');
 
 // dashboard peminjam
 Route::get('/dashboardp', [peminjamcontroller::class, 'index'])->name('dashboardpeminjam');
@@ -28,3 +29,4 @@ Route::post('/tambahp',[peminjamcontroller::class, 'store'])->name('store-pinjam
 Route::get('/editp/{id}',[peminjamcontroller::class, 'edit'])->name('edit-peminjam');
 Route::post('/editp/{id}', [peminjamcontroller::class, 'update'])->name('update-peminjam');
 Route::delete('/deletep/{id}', [peminjamcontroller::class, 'destroy'])->name('delete-peminjam');
+Route::get('searchp', [peminjamcontroller::class, 'search'])->name('searchp');
