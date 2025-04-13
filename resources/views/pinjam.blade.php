@@ -1,9 +1,5 @@
 @extends("dashboard awal.dashboard")
 
-@section("name")
-    <p>{{ $usersname->name }}</p>
-@endsection
-
 @section("table")
 
 <div class="content">
